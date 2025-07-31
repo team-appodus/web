@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { RadioGroup, RadioGroupItem } from '@3rdparty/ui/radio-group';
 import { useOnboardingStore } from '@stores/onboardingStore';
 import { ArrowRight, ArrowLeft, Clock } from 'lucide-react';
+import { httpClient } from 'containers';
+import { ProjectStagingService } from '@components/project/staging/service';
 
 const budgetOptions = [
   { value: '5k-10k', label: '$5k - $10k', popular: false },
@@ -28,15 +30,17 @@ const timelineOptions = [
 
 export function TimelineStep() {
   const { data, updateData, nextStep, prevStep } = useOnboardingStore();
+  const projectStagingService = new ProjectStagingService(httpClient)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
-    if (data.budgetRange && data.timeline) {
+    if (data.budget_range && data.timeline) {
+      await projectStagingService.upsertProjectStaging(data)
       nextStep();
     }
   };
 
-  const isValid = data.budgetRange && data.timeline;
+  const isValid = data.budget_range && data.timeline;
 
   return (
     <motion.div
@@ -63,7 +67,7 @@ export function TimelineStep() {
           <form onSubmit={handleSubmit} className="space-y-8">
             <div className="space-y-4">
               <Label className="text-lg font-semibold">Budget Range</Label>
-              <Select value={data.budgetRange} onValueChange={(value) => updateData({ budgetRange: value })}>
+              <Select value={data.budget_range} onValueChange={(value) => updateData({ budget_range: value })}>
                 <SelectTrigger className="w-full h-12 text-left">
                   <SelectValue placeholder="Select your budget range" />
                 </SelectTrigger>

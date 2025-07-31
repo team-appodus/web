@@ -10,6 +10,8 @@ import { Switch } from '@3rdparty/ui/switch';
 import { RadioGroup, RadioGroupItem } from '@3rdparty/ui/radio-group';
 import { useOnboardingStore } from '@stores/onboardingStore';
 import { ArrowRight, ArrowLeft, Zap } from 'lucide-react';
+import { httpClient } from 'containers';
+import { ProjectStagingService } from '@components/project/staging/service';
 
 const paymentOptions = [
   { id: 'paystack', label: 'Paystack' },
@@ -55,13 +57,15 @@ const supportOptions = [
 
 export function StackStep() {
   const { data, updateData, nextStep, prevStep } = useOnboardingStore();
+  const projectStagingService = new ProjectStagingService(httpClient)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
+      await projectStagingService.upsertProjectStaging(data)
     nextStep();
   };
 
-  const handleMultiSelectChange = (category: keyof Pick<typeof data, 'payments' | 'messaging' | 'aiModels' | 'socialLogin' | 'fileStorage'>, optionId: string, checked: boolean) => {
+  const handleMultiSelectChange = (category: keyof Pick<typeof data, 'payments' | 'messaging_apis' | 'ai_model_apis' | 'social_logins' | 'file_stores'>, optionId: string, checked: boolean) => {
     const currentOptions = data[category] || [];
     if (checked) {
       updateData({ [category]: [...currentOptions, optionId] });
@@ -103,7 +107,7 @@ export function StackStep() {
                       htmlFor={option.id}
                       className={`
                         flex items-center space-x-2 p-3 rounded-lg border cursor-pointer transition-all duration-200
-                        ${data.payments.includes(option.id)
+                        ${data.payments?.includes(option.id)
                           ? 'border-primary bg-primary/5'
                           : 'border-muted hover:border-primary/50'
                         }
@@ -111,7 +115,7 @@ export function StackStep() {
                     >
                       <Checkbox
                         id={option.id}
-                        checked={data.payments.includes(option.id)}
+                        checked={data.payments?.includes(option.id)}
                         onCheckedChange={(checked) => handleMultiSelectChange('payments', option.id, checked as boolean)}
                       />
                       <span className="text-sm font-medium">{option.label}</span>
@@ -124,8 +128,8 @@ export function StackStep() {
                 <Label htmlFor="escrow" className="text-sm font-medium">Escrow Support</Label>
                 <Switch
                   id="escrow"
-                  checked={data.escrow}
-                  onCheckedChange={(checked) => updateData({ escrow: checked })}
+                  checked={data.escrow_support}
+                  onCheckedChange={(checked) => updateData({ escrow_support: checked })}
                 />
               </div>
             </div>
@@ -140,7 +144,7 @@ export function StackStep() {
                       htmlFor={option.id}
                       className={`
                         flex items-center space-x-2 p-3 rounded-lg border cursor-pointer transition-all duration-200
-                        ${data.messaging.includes(option.id)
+                        ${data.messaging_apis?.includes(option.id)
                           ? 'border-primary bg-primary/5'
                           : 'border-muted hover:border-primary/50'
                         }
@@ -148,8 +152,8 @@ export function StackStep() {
                     >
                       <Checkbox
                         id={option.id}
-                        checked={data.messaging.includes(option.id)}
-                        onCheckedChange={(checked) => handleMultiSelectChange('messaging', option.id, checked as boolean)}
+                        checked={data.messaging_apis?.includes(option.id)}
+                        onCheckedChange={(checked) => handleMultiSelectChange('messaging_apis', option.id, checked as boolean)}
                       />
                       <span className="text-sm font-medium">{option.label}</span>
                     </Label>
@@ -168,7 +172,7 @@ export function StackStep() {
                       htmlFor={option.id}
                       className={`
                         flex items-center space-x-2 p-3 rounded-lg border cursor-pointer transition-all duration-200
-                        ${data.aiModels.includes(option.id)
+                        ${data.ai_model_apis?.includes(option.id)
                           ? 'border-primary bg-primary/5'
                           : 'border-muted hover:border-primary/50'
                         }
@@ -176,8 +180,8 @@ export function StackStep() {
                     >
                       <Checkbox
                         id={option.id}
-                        checked={data.aiModels.includes(option.id)}
-                        onCheckedChange={(checked) => handleMultiSelectChange('aiModels', option.id, checked as boolean)}
+                        checked={data.ai_model_apis?.includes(option.id)}
+                        onCheckedChange={(checked) => handleMultiSelectChange('ai_model_apis', option.id, checked as boolean)}
                       />
                       <span className="text-sm font-medium">{option.label}</span>
                     </Label>
@@ -196,7 +200,7 @@ export function StackStep() {
                       htmlFor={option.id}
                       className={`
                         flex items-center space-x-2 p-3 rounded-lg border cursor-pointer transition-all duration-200
-                        ${data.socialLogin.includes(option.id)
+                        ${data.social_logins?.includes(option.id)
                           ? 'border-primary bg-primary/5'
                           : 'border-muted hover:border-primary/50'
                         }
@@ -204,8 +208,8 @@ export function StackStep() {
                     >
                       <Checkbox
                         id={option.id}
-                        checked={data.socialLogin.includes(option.id)}
-                        onCheckedChange={(checked) => handleMultiSelectChange('socialLogin', option.id, checked as boolean)}
+                        checked={data.social_logins?.includes(option.id)}
+                        onCheckedChange={(checked) => handleMultiSelectChange('social_logins', option.id, checked as boolean)}
                       />
                       <span className="text-sm font-medium">{option.label}</span>
                     </Label>
@@ -218,8 +222,8 @@ export function StackStep() {
                 <Input
                   id="socialLoginOther"
                   placeholder="Facebook, Twitter, etc."
-                  value={data.socialLoginOther}
-                  onChange={(e) => updateData({ socialLoginOther: e.target.value })}
+                  value={data.other_social_logins}
+                  onChange={(e) => updateData({ other_social_logins: e.target.value })}
                   className="transition-all duration-200 focus:scale-[1.02]"
                 />
               </div>
@@ -235,7 +239,7 @@ export function StackStep() {
                       htmlFor={option.id}
                       className={`
                         flex items-center space-x-2 p-3 rounded-lg border cursor-pointer transition-all duration-200
-                        ${data.fileStorage.includes(option.id)
+                        ${data.file_stores?.includes(option.id)
                           ? 'border-primary bg-primary/5'
                           : 'border-muted hover:border-primary/50'
                         }
@@ -243,8 +247,8 @@ export function StackStep() {
                     >
                       <Checkbox
                         id={option.id}
-                        checked={data.fileStorage.includes(option.id)}
-                        onCheckedChange={(checked) => handleMultiSelectChange('fileStorage', option.id, checked as boolean)}
+                        checked={data.file_stores?.includes(option.id)}
+                        onCheckedChange={(checked) => handleMultiSelectChange('file_stores', option.id, checked as boolean)}
                       />
                       <span className="text-sm font-medium">{option.label}</span>
                     </Label>
@@ -253,12 +257,12 @@ export function StackStep() {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="fileStorageOther" className="text-sm font-medium">Others (specify)</Label>
+                <Label htmlFor="other_file_stores" className="text-sm font-medium">Others (specify)</Label>
                 <Input
-                  id="fileStorageOther"
+                  id="other_file_stores"
                   placeholder="DigitalOcean Spaces, etc."
-                  value={data.fileStorageOther}
-                  onChange={(e) => updateData({ fileStorageOther: e.target.value })}
+                  value={data.other_file_stores}
+                  onChange={(e) => updateData({ other_file_stores: e.target.value })}
                   className="transition-all duration-200 focus:scale-[1.02]"
                 />
               </div>
@@ -266,24 +270,24 @@ export function StackStep() {
 
             {/* CRM / Marketing Tools */}
             <div className="space-y-2">
-              <Label htmlFor="crmTools" className="text-lg font-semibold">CRM / Marketing Tools</Label>
+              <Label htmlFor="crm_tools" className="text-lg font-semibold">CRM / Marketing Tools</Label>
               <Input
-                id="crmTools"
+                id="crm_tools"
                 placeholder="HubSpot, Salesforce, Mailchimp, etc."
-                value={data.crmTools}
-                onChange={(e) => updateData({ crmTools: e.target.value })}
+                value={data.crm_tools}
+                onChange={(e) => updateData({ crm_tools: e.target.value })}
                 className="transition-all duration-200 focus:scale-[1.02]"
               />
             </div>
 
             {/* Other APIs */}
             <div className="space-y-2">
-              <Label htmlFor="otherApis" className="text-lg font-semibold">Other Third-party APIs</Label>
+              <Label htmlFor="other_third_party_apis" className="text-lg font-semibold">Other Third-party APIs</Label>
               <Input
-                id="otherApis"
+                id="other_third_party_apis"
                 placeholder="Maps, Analytics, Social media APIs, etc."
-                value={data.otherApis}
-                onChange={(e) => updateData({ otherApis: e.target.value })}
+                value={data.other_third_party_apis}
+                onChange={(e) => updateData({ other_third_party_apis: e.target.value })}
                 className="transition-all duration-200 focus:scale-[1.02]"
               />
             </div>
@@ -292,8 +296,8 @@ export function StackStep() {
             <div className="space-y-4">
               <Label className="text-lg font-semibold">Post-Production Support</Label>
               <RadioGroup
-                value={data.postProductionSupport}
-                onValueChange={(value) => updateData({ postProductionSupport: value })}
+                value={data.post_production_support}
+                onValueChange={(value) => updateData({ post_production_support: value })}
                 className="space-y-3"
               >
                 {supportOptions.map((option) => (
@@ -306,7 +310,7 @@ export function StackStep() {
                       htmlFor={option.value}
                       className={`
                         flex items-center space-x-3 p-4 rounded-lg border-2 cursor-pointer transition-all duration-200
-                        ${data.postProductionSupport === option.value 
+                        ${data.post_production_support === option.value 
                           ? 'border-primary bg-primary/5' 
                           : 'border-muted hover:border-primary/50'
                         }

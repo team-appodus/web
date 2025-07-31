@@ -17,7 +17,7 @@ const Work = () => {
         "60% faster data processing",
         "25% improvement in conversion tracking"
       ],
-      image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=500&fit=crop",
+      image: "/assets/featured-work/techflow-dashboard.png",
       timeline: "8 weeks",
       client: "TechFlow (YC S22)"
     },
@@ -31,7 +31,7 @@ const Work = () => {
         "4.8★ App Store rating",
         "90% user retention rate"
       ],
-      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop",
+      image: "/assets/featured-work/datapulse-mobile.png",
       timeline: "10 weeks",
       client: "DataPulse Inc."
     },
@@ -45,7 +45,7 @@ const Work = () => {
         "300% increase in campaign efficiency",
         "15+ enterprise clients onboarded"
       ],
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
+      image: "/assets/featured-work/growthlabs-platform.png",
       timeline: "12 weeks",
       client: "GrowthLabs"
     },
@@ -59,7 +59,7 @@ const Work = () => {
         "Real-time financial insights",
         "Automated compliance reporting"
       ],
-      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop",
+      image: "/assets/featured-work/fin_track_dashboard.png",
       timeline: "6 weeks",
       client: "FinTech Startup"
     },
@@ -73,7 +73,7 @@ const Work = () => {
         "500+ vendors signed up",
         "Featured in Product Hunt top 5"
       ],
-      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=500&fit=crop",
+      image: "/assets/featured-work/eco_market_landing.png",
       timeline: "4 weeks",
       client: "EcoMarket"
     },
@@ -87,7 +87,7 @@ const Work = () => {
         "95% uptime reliability",
         "Integration with 15+ tools"
       ],
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=500&fit=crop",
+      image: "/assets/featured-work/team_sync_mobile.png",
       timeline: "14 weeks",
       client: "TeamSync Inc."
     }

@@ -8,6 +8,8 @@ import { RadioGroup, RadioGroupItem } from '@3rdparty/ui/radio-group';
 import { Checkbox } from '@3rdparty/ui/checkbox';
 import { useOnboardingStore } from '@stores/onboardingStore';
 import { ArrowRight, ArrowLeft, Settings, Smartphone, Globe, Monitor, HelpCircle } from 'lucide-react';
+import { ProjectStagingService } from '@components/project/staging/service';
+import { httpClient } from 'containers';
 
 const buildTypes = [
   { value: 'new', label: 'New Implementation', description: 'Starting from scratch' },
@@ -77,24 +79,25 @@ const productTypes = [
 
 export function BuildSpecsStep() {
   const { data, updateData, nextStep, prevStep } = useOnboardingStore();
+  const projectStagingService = new ProjectStagingService(httpClient)
+  const isValid = data.build_type && data.platform && (data.product_types ?? []).length > 0;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
-    if (data.buildType && data.platform && data.productTypes.length > 0) {
+    if (isValid) {
+      await projectStagingService.upsertProjectStaging(data)
       nextStep();
     }
   };
 
   const handleProductTypeChange = (productId: string, checked: boolean) => {
-    const currentTypes = data.productTypes || [];
+    const currentTypes = data.product_types || [];
     if (checked) {
-      updateData({ productTypes: [...currentTypes, productId] });
+      updateData({ product_types: [...currentTypes, productId] });
     } else {
-      updateData({ productTypes: currentTypes.filter(id => id !== productId) });
+      updateData({ product_types: currentTypes.filter(id => id !== productId) });
     }
   };
-
-  const isValid = data.buildType && data.platform && data.productTypes.length > 0;
 
   return (
     <motion.div
@@ -123,8 +126,8 @@ export function BuildSpecsStep() {
             <div className="space-y-4">
               <Label className="text-lg font-semibold">Type of Build</Label>
               <RadioGroup
-                value={data.buildType}
-                onValueChange={(value) => updateData({ buildType: value })}
+                value={data.build_type}
+                onValueChange={(value) => updateData({ build_type: value })}
                 className="grid grid-cols-1 gap-3"
               >
                 {buildTypes.map((type) => (
@@ -137,7 +140,7 @@ export function BuildSpecsStep() {
                       htmlFor={type.value}
                       className={`
                         flex items-center space-x-3 p-4 rounded-lg border-2 cursor-pointer transition-all duration-200
-                        ${data.buildType === type.value 
+                        ${data.build_type === type.value 
                           ? 'border-primary bg-primary/5' 
                           : 'border-muted hover:border-primary/50'
                         }
@@ -208,7 +211,7 @@ export function BuildSpecsStep() {
                             htmlFor={item.id}
                             className={`
                               flex items-center space-x-3 p-3 rounded-lg border cursor-pointer transition-all duration-200
-                              ${data.productTypes.includes(item.id)
+                              ${data.product_types?.includes(item.id)
                                 ? 'border-primary bg-primary/5'
                                 : 'border-muted hover:border-primary/50'
                               }
@@ -216,13 +219,13 @@ export function BuildSpecsStep() {
                           >
                             <Checkbox
                               id={item.id}
-                              checked={data.productTypes.includes(item.id)}
+                              checked={data.product_types?.includes(item.id)}
                               onCheckedChange={(checked) => handleProductTypeChange(item.id, checked as boolean)}
                             />
                             <div className="flex-1">
                               <div className="font-medium text-sm">{item.label}</div>
                               {item.popular && (
-                                <span className="text-xs text-accent font-medium">Popular</span>
+                                <span className=" bg-accent text-accent-foreground text-xs font-medium">Popular</span>
                               )}
                             </div>
                           </Label>

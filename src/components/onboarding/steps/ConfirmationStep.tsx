@@ -7,14 +7,22 @@ import { Badge } from '@3rdparty/ui/badge';
 import { useOnboardingStore } from '@stores/onboardingStore';
 import { ArrowLeft, Rocket, CheckCircle, Calendar, Mail, Phone } from 'lucide-react';
 import { useToast } from '@hooks/use-toast';
+import { ProjectService } from '@components/project/service';
+import { httpClient } from 'containers';
+import { CreateProjectDto } from '@components/project/models';
 
 export function ConfirmationStep() {
   const { data, prevStep, resetData } = useOnboardingStore();
   const { toast } = useToast();
+    const projectService = new ProjectService(httpClient)
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     // Here you would typically send the data to your backend
     console.log('Onboarding data:', data);
+    
+    const projectDto = data as CreateProjectDto;
+    await projectService.createProject(projectDto)
+    resetData()
     
     toast({
       title: "🚀 You're ready to build!",
@@ -73,7 +81,7 @@ export function ConfirmationStep() {
           <CardContent className="space-y-3">
             <div className="flex items-center gap-2 text-sm">
               <Mail className="w-4 h-4 text-muted-foreground" />
-              <span className="font-medium">{data.fullName}</span>
+              <span className="font-medium">{data.fullname}</span>
               <span className="text-muted-foreground">({data.email})</span>
             </div>
             {data.phone && (
@@ -84,14 +92,14 @@ export function ConfirmationStep() {
             )}
             <div className="flex items-center gap-2 text-sm">
               <span className="font-medium">Company:</span>
-              <span>{data.companyName}</span>
+              <span>{data.company_name}</span>
             </div>
             <div className="flex items-center gap-2 text-sm">
               <Calendar className="w-4 h-4 text-muted-foreground" />
               <span>{data.timeline}</span>
             </div>
             <div className="pt-2">
-              <Badge variant="secondary">{data.budgetRange}</Badge>
+              <Badge variant="secondary">{data.budget_range}</Badge>
             </div>
           </CardContent>
         </Card>
@@ -107,17 +115,17 @@ export function ConfirmationStep() {
           <CardContent className="space-y-3">
             <div>
               <span className="font-medium text-sm">What you&lsquo;re building:</span>
-              <p className="text-sm text-muted-foreground mt-1">{data.whatBuilding}</p>
+              <p className="text-sm text-muted-foreground mt-1">{data.what_building}</p>
             </div>
-            {data.whatNotBuilding && (
+            {data.what_not_building && (
               <div>
                 <span className="font-medium text-sm">What you&lsquo;re NOT building:</span>
-                <p className="text-sm text-muted-foreground mt-1">{data.whatNotBuilding}</p>
+                <p className="text-sm text-muted-foreground mt-1">{data.what_not_building}</p>
               </div>
             )}
             <div className="flex items-center gap-2 text-sm pt-2">
               <span className="font-medium">Target Market:</span>
-              <Badge variant="outline">{data.customerLocation}</Badge>
+              <Badge variant="outline">{data.customer_location}</Badge>
             </div>
           </CardContent>
         </Card>
@@ -132,13 +140,13 @@ export function ConfirmationStep() {
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="flex flex-wrap gap-2">
-              <Badge>{data.buildType}</Badge>
+              <Badge>{data.build_type}</Badge>
               <Badge>{data.platform}</Badge>
             </div>
             <div>
               <span className="font-medium text-sm">Product Types:</span>
               <div className="flex flex-wrap gap-1 mt-1">
-                {data.productTypes.map((type) => (
+                {data.product_types?.map((type) => (
                   <Badge key={type} variant="outline" className="text-xs">
                     {type.replace('-', ' ')}
                   </Badge>
@@ -157,11 +165,11 @@ export function ConfirmationStep() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            {data.payments.length > 0 && (
+            {(data.messaging_apis??[]).length > 0 && (
               <div>
                 <span className="font-medium text-sm">Payments:</span>
                 <div className="flex flex-wrap gap-1 mt-1">
-                  {data.payments.map((payment) => (
+                  {data.payments?.map((payment) => (
                     <Badge key={payment} variant="outline" className="text-xs">
                       {payment}
                     </Badge>
@@ -169,11 +177,11 @@ export function ConfirmationStep() {
                 </div>
               </div>
             )}
-            {data.messaging.length > 0 && (
+            {(data.messaging_apis??[]).length > 0 && (
               <div>
                 <span className="font-medium text-sm">Messaging:</span>
                 <div className="flex flex-wrap gap-1 mt-1">
-                  {data.messaging.map((msg) => (
+                  {data.messaging_apis?.map((msg) => (
                     <Badge key={msg} variant="outline" className="text-xs">
                       {msg}
                     </Badge>
@@ -181,11 +189,11 @@ export function ConfirmationStep() {
                 </div>
               </div>
             )}
-            {data.postProductionSupport && (
+            {data.post_production_support && (
               <div>
                 <span className="font-medium text-sm">Support:</span>
                 <Badge variant="outline" className="ml-2 text-xs">
-                  {data.postProductionSupport}
+                  {data.post_production_support}
                 </Badge>
               </div>
             )}
