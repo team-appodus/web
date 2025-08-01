@@ -5,3 +5,4 @@ const baseURL = config.apiUrl;
 export const httpClient: HttpClient = new AxiosHttpClient(baseURL)
 
 export const serverStore: ServerStore = new ServerStore()
+export const microsoftClarityProjectId = config.microsoftClarityProjectId
