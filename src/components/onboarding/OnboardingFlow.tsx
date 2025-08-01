@@ -9,6 +9,9 @@ import { MissionStep } from './steps/MissionStep';
 import { BuildSpecsStep } from './steps/BuildSpecsStep';
 import { StackStep } from './steps/StackStep';
 import { ConfirmationStep } from './steps/ConfirmationStep';
+import { useClarity } from '@hooks/useClarity';
+import { useEffect } from 'react';
+import { microsoftClarityProjectId } from 'containers';
 
 const steps = {
   1: ContactStep,
@@ -23,6 +26,15 @@ export function OnboardingFlow() {
   const { currentStep } = useOnboardingStore();
   const CurrentStepComponent = steps[currentStep as keyof typeof steps];
 
+  const { init, identify, setTag, event } = useClarity()
+
+  useEffect(() => {
+    init(microsoftClarityProjectId!)
+    identify('user_456', undefined, undefined, 'Kingsley')
+    setTag('plan', 'Startup')
+    event('project_onboarding_visited')
+  }, [init, identify, setTag, event])
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 py-8 px-4">
       <div className="max-w-6xl mx-auto">

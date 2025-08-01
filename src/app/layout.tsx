@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import "@app/globals.css";
 import Footer from "@components/Footer";
 import Navigation from "@components/Navigation";
+import { ClarityPageTracker } from "@components/microsoft-clarity/clarity-tracker";
+import { ClarityProvider } from "@components/microsoft-clarity/clarity-provider";
 
 export const metadata: Metadata = {
   title: "appodus - Strategic Tech Partner for Fast-Moving Startups",
@@ -16,18 +18,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en">
       <body
         className=""
       >
-        <div className="min-h-screen flex flex-col">
-      <Navigation />
-      <main className="flex-1">
-        {children}
-      </main>
-      <Footer />
-    </div>
+      <ClarityProvider />
+      <ClarityPageTracker />
+      <div className="min-h-screen flex flex-col">
+        <Navigation />
+        <main className="flex-1">
+          {children}
+        </main>
+        <Footer />
+      </div>
       </body>
     </html>
   );
