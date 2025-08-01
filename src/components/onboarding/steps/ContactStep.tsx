@@ -7,18 +7,24 @@ import { Label } from '@3rdparty/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@3rdparty/ui/card';
 import { useOnboardingStore } from '@stores/onboardingStore';
 import { ArrowRight, Brain } from 'lucide-react';
+import { httpClient } from 'containers';
+import { ProjectStagingService } from '@components/project/staging/service';
+import { SuccessResponse } from 'types/models';
+import { QueryProjectStagingDto } from '@components/project/staging/models';
 
 export function ContactStep() {
   const { data, updateData, nextStep } = useOnboardingStore();
+  const projectStagingService = new ProjectStagingService(httpClient)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const isValid = data.fullname && data.email && data.company_name;
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
-    if (data.fullName && data.email && data.companyName) {
+    if (isValid) {
+      const server_response: SuccessResponse<QueryProjectStagingDto> = await projectStagingService.upsertProjectStaging(data)
+      updateData({ staging_id: server_response.data?.id })
       nextStep();
     }
   };
-
-  const isValid = data.fullName && data.email && data.companyName;
 
   return (
     <motion.div
@@ -52,8 +58,8 @@ export function ContactStep() {
                   id="fullName"
                   type="text"
                   placeholder="John Doe"
-                  value={data.fullName}
-                  onChange={(e) => updateData({ fullName: e.target.value })}
+                  value={data.fullname}
+                  onChange={(e) => updateData({ fullname: e.target.value })}
                   className="transition-all duration-200 focus:scale-[1.02]"
                   required
                 />
@@ -77,7 +83,7 @@ export function ContactStep() {
 
             <div className="space-y-2">
               <Label htmlFor="phone" className="text-sm font-medium">
-                Phone Number
+                Phone Number *
               </Label>
               <Input
                 id="phone"
@@ -86,6 +92,7 @@ export function ContactStep() {
                 value={data.phone}
                 onChange={(e) => updateData({ phone: e.target.value })}
                 className="transition-all duration-200 focus:scale-[1.02]"
+                required
               />
             </div>
 
@@ -97,8 +104,8 @@ export function ContactStep() {
                 id="companyName"
                 type="text"
                 placeholder="Acme Startup Inc."
-                value={data.companyName}
-                onChange={(e) => updateData({ companyName: e.target.value })}
+                value={data.company_name}
+                onChange={(e) => updateData({ company_name: e.target.value })}
                 className="transition-all duration-200 focus:scale-[1.02]"
                 required
               />
