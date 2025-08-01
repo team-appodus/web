@@ -8,9 +8,9 @@ import axios, {
 
 export interface HttpClient {
   get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
-  post<T = any, R = T>(url: string, data?: T, config?: AxiosRequestConfig): Promise<R>;
-  put<T = any, R = T>(url: string, data?: T, config?: AxiosRequestConfig): Promise<R>;
-  patch<T = any, R = T>(url: string, data?: T, config?: AxiosRequestConfig): Promise<R>;
+  post<T = any, R = any>(url: string, data?: T, config?: AxiosRequestConfig): Promise<R>;
+  put<T = any, R = any>(url: string, data?: T, config?: AxiosRequestConfig): Promise<R>;
+  patch<T = any, R = any>(url: string, data?: T, config?: AxiosRequestConfig): Promise<R>;
   delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
 }
 
@@ -87,6 +87,7 @@ export class AxiosHttpClient implements HttpClient {
 
     // Network or CORS errors
     if (error.code === "ECONNABORTED" || error.message === "Network Error" || !error.response) {
+      console.log("error obj: ", error)
       console.error("Network error. Please check your internet connection.");
       this.notifyNetworkError(); // Optionally show toast/snackbar
     }
@@ -145,17 +146,17 @@ private notifyNetworkError() {
     return response.data;
   }
 
-  async post<T = any, R = T>(url: string, data?: T, config?: AxiosRequestConfig): Promise<R> {
+  async post<T = any, R = any>(url: string, data?: T, config?: AxiosRequestConfig): Promise<R> {
     const response: AxiosResponse<R> = await this.instance.post(url, data, config);
     return response.data;
   }
 
-  async put<T = any, R = T>(url: string, data?: T, config?: AxiosRequestConfig): Promise<R> {
+  async put<T = any, R = any>(url: string, data?: T, config?: AxiosRequestConfig): Promise<R> {
     const response: AxiosResponse<R> = await this.instance.put(url, data, config);
     return response.data;
   }
 
-  async patch<T = any, R = T>(url: string, data?: T, config?: AxiosRequestConfig): Promise<R> {
+  async patch<T = any, R = any>(url: string, data?: T, config?: AxiosRequestConfig): Promise<R> {
     const response: AxiosResponse<R> = await this.instance.patch(url, data, config);
     return response.data;
   }

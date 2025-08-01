@@ -8,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@3rdparty/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@3rdparty/ui/select';
 import { useOnboardingStore } from '@stores/onboardingStore';
 import { ArrowRight, ArrowLeft, Rocket } from 'lucide-react';
+import { httpClient } from 'containers';
+import { ProjectStagingService } from '@components/project/staging/service';
 
 const countries = [
   { value: 'us', label: '🇺🇸 United States', flag: '🇺🇸' },
@@ -30,15 +32,17 @@ const countries = [
 
 export function MissionStep() {
   const { data, updateData, nextStep, prevStep } = useOnboardingStore();
+  const projectStagingService = new ProjectStagingService(httpClient)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
-    if (data.whatBuilding && data.customerLocation) {
+    if (data.what_building && data.customer_location) {
+      await projectStagingService.upsertProjectStaging(data)
       nextStep();
     }
   };
 
-  const isValid = data.whatBuilding && data.customerLocation;
+  const isValid = data.what_building && data.customer_location;
 
   return (
     <motion.div
@@ -70,8 +74,8 @@ export function MissionStep() {
               <Textarea
                 id="whatBuilding"
                 placeholder="e.g., We&lsquo;re building a marketplace for local chefs to connect with foodies. Think Airbnb but for home-cooked meals..."
-                value={data.whatBuilding}
-                onChange={(e) => updateData({ whatBuilding: e.target.value })}
+                value={data.what_building}
+                onChange={(e) => updateData({ what_building: e.target.value })}
                 className="min-h-[120px] resize-none transition-all duration-200 focus:scale-[1.02]"
                 required
               />
@@ -87,8 +91,8 @@ export function MissionStep() {
               <Textarea
                 id="whatNotBuilding"
                 placeholder="e.g., We don&lsquo;t need payments or delivery built-in right now. We&lsquo;re focusing on discovery and booking first..."
-                value={data.whatNotBuilding}
-                onChange={(e) => updateData({ whatNotBuilding: e.target.value })}
+                value={data.what_not_building}
+                onChange={(e) => updateData({ what_not_building: e.target.value })}
                 className="min-h-[100px] resize-none transition-all duration-200 focus:scale-[1.02]"
               />
               <p className="text-xs text-muted-foreground">
@@ -98,7 +102,7 @@ export function MissionStep() {
 
             <div className="space-y-3">
               <Label className="text-lg font-semibold">Customer Primary Location *</Label>
-              <Select value={data.customerLocation} onValueChange={(value) => updateData({ customerLocation: value })}>
+              <Select value={data.customer_location} onValueChange={(value) => updateData({ customer_location: value })}>
                 <SelectTrigger className="w-full h-12">
                   <SelectValue placeholder="Select primary customer location" />
                 </SelectTrigger>

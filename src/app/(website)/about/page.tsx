@@ -40,21 +40,21 @@ const About = () => {
       name: "Kingsley Ezenwere",
       role: "Co-Founder & Technical Lead",
       bio: "Former engineering lead at two Y Combinator startups. Built and scaled products from 0 to millions of users.",
-      image: "assets/team/kingsley-ezenwere-appodus-founder.png",
+      image: "/assets/team/kingsley-ezenwere-appodus-founder.png",
       expertise: ["Full-Stack Development", "System Architecture", "Team Leadership"]
     },
     {
       name: "Sarah Rodriguez",
       role: "Co-Founder & Product Lead",
       bio: "Product manager turned founder with 8+ years building user-centric applications for high-growth startups.",
-      image: "assets/team/kingsley-ezenwere-appodus-founder.png",
+      image: "/assets/team/kingsley-ezenwere-appodus-founder.png",
       expertise: ["Product Strategy", "UX Design", "Growth Optimization"]
     },
     {
       name: "Marcus Thompson",
       role: "Senior Developer",
       bio: "Full-stack engineer with expertise in modern web technologies and a passion for clean, scalable code.",
-      image: "assets/team/kingsley-ezenwere-appodus-founder.png",
+      image: "/assets/team/kingsley-ezenwere-appodus-founder.png",
       expertise: ["React/Next.js", "Node.js", "Cloud Infrastructure"]
     }
   ];
@@ -115,8 +115,8 @@ const About = () => {
             </div>
             <div className="relative">
               <Image
-                src="/assets/team/appodus-team-members.png" 
-                alt="Team collaboration" 
+                src="/assets/team/appodus-team-members.png"
+                alt="Team collaboration"
                 width={1920}
                 height={1080}
                 className="rounded-2xl shadow-lg max-w-full h-auto"
@@ -166,8 +166,8 @@ const About = () => {
             {team.map((member, index) => (
               <Card key={index} className="border-0 card-soft-shadow text-center">
                 <CardContent className="p-8">
-                  <Image 
-                    src={member.image} 
+                  <Image
+                    src={member.image}
                     alt={member.name}
                     width={96}
                     height={96}
