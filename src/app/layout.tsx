@@ -4,6 +4,8 @@ import Footer from "@components/Footer";
 import Navigation from "@components/Navigation";
 import { ClarityPageTracker } from "@components/microsoft-clarity/clarity-tracker";
 import { ClarityProvider } from "@components/microsoft-clarity/clarity-provider";
+import { AuthModal } from "@components/user/auth/AuthModal";
+import { FullPageLoading } from "@components/ui/loading-spinner";
 
 export const metadata: Metadata = {
   title: "appodus - Strategic Tech Partner for Fast-Moving Startups",
@@ -14,10 +16,11 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // return <FullPageLoading text="Initializing..." />;
   
   return (
     <html lang="en">
@@ -32,6 +35,8 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <FullPageLoading text="Initializing..." />
+        <AuthModal />
       </div>
       </body>
     </html>

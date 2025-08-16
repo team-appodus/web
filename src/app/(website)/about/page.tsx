@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { ROUTES } from "@lib/routes";
 
 const About = () => {
   const values = [
@@ -247,13 +248,13 @@ const About = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="accent" size="xl" asChild>
-              <Link href="/contact">
+              <Link href={ROUTES.START_YOUR_BUILD}>
                 Start a Conversation
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button variant="outline" size="xl" className="bg-primary text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
-              <Link href="/work">See Our Work</Link>
+              <Link href={ROUTES.FEATURED_WORK}>See Our Work</Link>
             </Button>
           </div>
         </div>

@@ -14,7 +14,7 @@ import { CreateProjectDto } from '@components/project/models';
 export function ConfirmationStep() {
   const { data, prevStep, resetData } = useOnboardingStore();
   const { toast } = useToast();
-    const projectService = new ProjectService(httpClient)
+  const projectService = new ProjectService(httpClient)
 
   const handleSubmit = async() => {
     // Here you would typically send the data to your backend
