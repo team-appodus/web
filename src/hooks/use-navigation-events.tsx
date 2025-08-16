@@ -26,5 +26,5 @@ export function useNavigationEvents({
         prevPath.current = to
       })
     }
-  }, [pathname])
+  }, [pathname, onStart, onComplete])
 }
