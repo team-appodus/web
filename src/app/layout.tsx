@@ -6,6 +6,7 @@ import { ClarityPageTracker } from "@components/microsoft-clarity/clarity-tracke
 import { ClarityProvider } from "@components/microsoft-clarity/clarity-provider";
 import { AuthModal } from "@components/user/auth/AuthModal";
 import { FullPageLoading } from "@components/ui/loading-spinner";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "appodus - Strategic Tech Partner for Fast-Moving Startups",
@@ -36,7 +37,9 @@ export default function RootLayout({
         </main>
         <Footer />
         <FullPageLoading text="Initializing..." />
-        <AuthModal />
+        <Suspense fallback={null}>
+          <AuthModal />
+        </Suspense>
       </div>
       </body>
     </html>

@@ -29,7 +29,7 @@ export function AuthModal() {
   useEffect(() => {
     const open = searchParams.get(authRequiredPathParamKey) === 'true'
     setOpen(open)
-  }, [searchParams.toString()])
+  }, [searchParams, searchParams.toString()])
 
   const initSocialLogin = async(provider: SocialAuthPlatform, operation_type: SocialAuthOperationType) => {
     const server_response: RedirectResponse = await userService.initSocialAuth(provider, operation_type)
