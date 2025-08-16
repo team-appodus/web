@@ -1,5 +1,6 @@
 import { Button } from "@3rdparty/ui/button";
 import { Card, CardContent } from "@3rdparty/ui/card";
+import { ROUTES } from "@lib/routes";
 import { 
   MessageSquare, 
   FileText, 
@@ -296,7 +297,7 @@ const HowItWorks = () => {
             Let&lsquo;s discuss your project and create a custom roadmap for success.
           </p>
           <Button variant="accent" size="xl" asChild>
-            <Link href="/contact">
+            <Link href={ROUTES.START_YOUR_BUILD}>
               Start Your Project
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>

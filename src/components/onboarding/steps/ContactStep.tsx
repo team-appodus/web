@@ -72,7 +72,7 @@ export function ContactStep() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="john@startup.com"
+                  placeholder="john.doe@startup.com"
                   value={data.email}
                   onChange={(e) => updateData({ email: e.target.value })}
                   className="transition-all duration-200 focus:scale-[1.02]"
@@ -103,7 +103,7 @@ export function ContactStep() {
               <Input
                 id="companyName"
                 type="text"
-                placeholder="Acme Startup Inc."
+                placeholder="Appodus Technologies LLC."
                 value={data.company_name}
                 onChange={(e) => updateData({ company_name: e.target.value })}
                 className="transition-all duration-200 focus:scale-[1.02]"

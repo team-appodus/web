@@ -4,6 +4,7 @@ import { Badge } from "@3rdparty/ui/badge";
 import { ArrowRight, TrendingUp, Users, Zap } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { ROUTES } from "@lib/routes";
 
 const Work = () => {
   const projects = [
@@ -256,13 +257,13 @@ const Work = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="accent" size="xl" asChild>
-              <Link href="/contact">
+              <Link href={ROUTES.START_YOUR_BUILD}>
                 Start Your Project
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button variant="outline" size="xl" className="bg-primary text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
-              <Link href="/how-it-works">See Our Process</Link>
+              <Link href={ROUTES.HOW_IT_WORKS}>See Our Process</Link>
             </Button>
           </div>
         </div>

@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { ROUTES } from "@lib/routes";
 
 const Home = () => {
   const services = [
@@ -166,13 +167,13 @@ const Home = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button variant="cta" size="xl" asChild>
-                  <Link href="/start-your-build">
+                  <Link href={ROUTES.START_YOUR_BUILD}>
                     Start Your Build
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
                 <Button variant="outline" size="xl" asChild>
-                  <Link href="/work">See Our Work</Link>
+                  <Link href={ROUTES.HOW_IT_WORKS}>See How It Works</Link>
                 </Button>
               </div>
             </div>
@@ -272,7 +273,7 @@ const Home = () => {
           
           <div className="text-center mt-12">
             <Button variant="outline" size="lg" asChild>
-              <Link href="/work">
+              <Link href={ROUTES.FEATURED_WORK}>
                 View More Work
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -365,7 +366,7 @@ const Home = () => {
               </Link>
             </Button>
             <Button variant="outline" size="xl" className="bg-primary text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
-              <Link href="/start-your-build">Start Your Build</Link>
+              <Link href={ROUTES.START_YOUR_BUILD}>Start Your Build</Link>
             </Button>
           </div>
         </div>
