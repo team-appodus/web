@@ -48,7 +48,7 @@ export function OnboardingFlow() {
             Build Mode <span className="text-primary">Activated</span>
           </h1>
           <p className="text-muted-foreground">
-            Let&lsquo;s gather the details we need to build your perfect product
+            {"Let's gather the details we need to build your perfect product"}
           </p>
         </motion.div>
 

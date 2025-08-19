@@ -116,7 +116,7 @@ export function BuildSpecsStep() {
             Core Architecture Loaded
           </CardTitle>
           <p className="text-muted-foreground">
-            Let&lsquo;s define the technical foundation and core features of your build.
+            {"Let's define the technical foundation and core features of your build."}
           </p>
         </CardHeader>
         
