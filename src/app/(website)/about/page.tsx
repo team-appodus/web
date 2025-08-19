@@ -27,12 +27,12 @@ const About = () => {
     {
       icon: Lightbulb,
       title: "Product Thinking",
-      description: "We don&lsquo;t just write code. We build products that solve real problems for real people."
+      description: "We don't just write code. We build products that solve real problems for real people."
     },
     {
       icon: Heart,
       title: "Partnership, Not Just Service",
-      description: "Your success is our success. We&lsquo;re invested in your journey, not just the project."
+      description: "Your success is our success. We're invested in your journey, not just the project."
     }
   ];
 
@@ -48,14 +48,14 @@ const About = () => {
       name: "Sarah Rodriguez",
       role: "Co-Founder & Product Lead",
       bio: "Product manager turned founder with 8+ years building user-centric applications for high-growth startups.",
-      image: "/assets/team/kingsley-ezenwere-appodus-founder.png",
+      image: "/assets/team/sarah-rodriguez.png",
       expertise: ["Product Strategy", "UX Design", "Growth Optimization"]
     },
     {
       name: "Marcus Thompson",
       role: "Senior Developer",
       bio: "Full-stack engineer with expertise in modern web technologies and a passion for clean, scalable code.",
-      image: "/assets/team/kingsley-ezenwere-appodus-founder.png",
+      image: "/assets/team/marcus-thompson.png",
       expertise: ["React/Next.js", "Node.js", "Cloud Infrastructure"]
     }
   ];
@@ -83,7 +83,7 @@ const About = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="mb-6">About appodus</h1>
           <p className="text-xl text-muted-foreground mb-8">
-            We&lsquo;re founders who became developers, then became the strategic tech partner 
+            We're founders who became developers, then became the strategic tech partner 
             we wish we had when we were building our first startups.
           </p>
         </div>
@@ -102,7 +102,7 @@ const About = () => {
               </p>
               <p className="text-lg text-muted-foreground mb-8">
                 Having been through the startup journey ourselves, we know that time is 
-                your most valuable resource. That&lsquo;s why we&lsquo;ve built a process that 
+                your most valuable resource. That's why we've built a process that 
                 delivers working software fast, without sacrificing quality.
               </p>
               <div className="grid grid-cols-2 gap-6">
@@ -159,7 +159,7 @@ const About = () => {
           <div className="text-center mb-16">
             <h2 className="mb-6">Meet the Team</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Experienced founders and developers who&lsquo;ve been in your shoes
+              Experienced founders and developers who've been in your shoes
             </p>
           </div>
 
@@ -222,7 +222,7 @@ const About = () => {
           <div className="space-y-6 text-lg text-muted-foreground">
             <p>
               After building and exiting two startups, we experienced firsthand the 
-              frustration of working with development agencies that didn&lsquo;t understand 
+              frustration of working with development agencies that didn't understand 
               startup urgency or product thinking.
             </p>
             <p>
@@ -232,7 +232,7 @@ const About = () => {
             </p>
             <p>
               Today, we help founders build products that users love, investors fund, 
-              and teams can scale. Because when you&lsquo;re changing the world, you need 
+              and teams can scale. Because when you're changing the world, you need 
               technology that keeps up.
             </p>
           </div>
@@ -244,7 +244,7 @@ const About = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="mb-6 text-primary-foreground">Ready to work together?</h2>
           <p className="text-xl mb-8 text-primary-foreground/90">
-            Let&lsquo;s build something amazing together. We&lsquo;re excited to hear about your vision.
+            Let's build something amazing together. We're excited to hear about your vision.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="accent" size="xl" asChild>

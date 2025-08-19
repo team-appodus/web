@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@3rdparty/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, User, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import { ROUTES } from "@lib/routes";
@@ -67,6 +67,13 @@ const Navigation = () => {
             <Button variant="cta" size="sm" asChild>
               <Link href={ROUTES.START_YOUR_BUILD}>Start Your Build</Link>
             </Button>
+            <Link
+              href="/login?auth-type=login"
+              className={`flex items-center space-x-1 text-sm font-medium transition-colors hover:text-primary`}
+            >
+              <User className="h-4 w-4" />
+              <span>Login</span>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -104,7 +111,18 @@ const Navigation = () => {
                   <Link href={ROUTES.START_YOUR_BUILD}>Start Your Build</Link>
                 </Button>
               </div>
-            </div>
+              <div className="px-3 py-2">
+                <Button variant="secondary" size="sm" className="w-full" asChild>
+                  <Link
+                    href="/login"
+                    className={`flex items-center space-x-2 px-3 py-2 text-base font-medium transition-colors hover:text-primary`}
+                  >
+                    <User className="h-5 w-5" />
+                    <span>Login</span>
+                  </Link>
+                </Button>
+              </div>
+              </div>
           </div>
         )}
       </div>

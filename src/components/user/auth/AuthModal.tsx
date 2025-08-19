@@ -5,7 +5,7 @@ import { useToast } from '@hooks/use-toast';
 import { Button } from '@components/3rdparty/ui/button';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { ExternalLink } from 'lucide-react';
-import { authRequiredPathParamKey, httpClient } from 'containers';
+import { authRequiredPathParamKey, authRequiredTypePathParamKey, httpClient } from 'containers';
 import { RedirectResponse, SocialAuthOperationType, SocialAuthPlatform } from './models';
 import { UserService } from './service';
 
@@ -21,6 +21,7 @@ export function AuthModal() {
   const params = new URLSearchParams(searchParams);
   const onOpenChange = () => {
     params.delete(authRequiredPathParamKey);
+    params.delete(authRequiredTypePathParamKey);
     replace(`${pathname}?${params.toString()}`);
 
     setOpen(false)
@@ -31,7 +32,8 @@ export function AuthModal() {
     setOpen(open)
   }, [searchParams, searchParams.toString()])
 
-  const initSocialLogin = async(provider: SocialAuthPlatform, operation_type: SocialAuthOperationType) => {
+  const initSocialLogin = async(provider: SocialAuthPlatform) => {
+    const operation_type = searchParams.get(authRequiredTypePathParamKey) === 'login' ? SocialAuthOperationType.LOGIN: SocialAuthOperationType.SIGNUP
     const server_response: RedirectResponse = await userService.initSocialAuth(provider, operation_type)
     window.location.href = server_response.redirectUrl
   }
@@ -83,7 +85,7 @@ export function AuthModal() {
             variant="outline"
             size="lg"
             className="w-full cursor-pointer group"
-            onClick={() => initSocialLogin(SocialAuthPlatform.GOOGLE, SocialAuthOperationType.SIGNUP)}
+            onClick={() => initSocialLogin(SocialAuthPlatform.GOOGLE)}
             disabled={loading}
           >
             <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
