@@ -162,8 +162,7 @@ const Home = () => {
                 Build Fast. <span className="text-primary">Scale Smart.</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                We help founders turn ideas into fast-moving products. From MVP to scale, 
-                we're your strategic tech partner for building what matters.
+                {"We help founders turn ideas into fast-moving products. From MVP to scale, we're your strategic tech partner for building what matters."}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button variant="cta" size="xl" asChild>
@@ -222,7 +221,7 @@ const Home = () => {
           <div className="text-center mb-16">
             <h2 className="mb-6">Why appodus</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              We're not just developers. We're founders who've built and scaled products ourselves.
+              {"We're not just developers. We're founders who've built and scaled products ourselves."}
             </p>
           </div>
           
@@ -246,7 +245,7 @@ const Home = () => {
           <div className="text-center mb-16">
             <h2 className="mb-6">Featured Work</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Real products, real results. See how we've helped startups succeed.
+              {"Real products, real results. See how we've helped startups succeed."}
             </p>
           </div>
           
@@ -315,7 +314,7 @@ const Home = () => {
           <div className="text-center mb-16">
             <h2 className="mb-6">What Founders Say</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Don't just take our word for it. Here's what our clients say about working with us.
+              {"Don't just take our word for it. Here's what our clients say about working with us."}
             </p>
           </div>
           
@@ -342,7 +341,7 @@ const Home = () => {
                     </div>
                   </div>
                   <blockquote className="text-muted-foreground italic leading-relaxed mb-6">
-                  '{testimonial.quote}'
+                  {testimonial.quote}
                 </blockquote>
                 </CardContent>
               </Card>
@@ -356,7 +355,7 @@ const Home = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="mb-6 text-primary-foreground">Ready to build your product?</h2>
           <p className="text-xl mb-8 text-primary-foreground/90">
-            Join the founders who chose speed and quality. Let's turn your idea into reality.
+            {"Join the founders who chose speed and quality. Let's turn your idea into reality."}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="accent" size="xl" asChild>

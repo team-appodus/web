@@ -91,7 +91,7 @@ export function StackStep() {
             Stack Expanded
           </CardTitle>
           <p className="text-muted-foreground">
-            Let's configure the integrations and technical stack that will power your product.
+            {"Let's configure the integrations and technical stack that will power your product."}
           </p>
         </CardHeader>
         
@@ -366,7 +366,7 @@ export function StackStep() {
         className="mt-6 text-center"
       >
         <div className="inline-flex items-center px-4 py-2 bg-accent/10 border border-accent/20 rounded-full text-sm text-accent-foreground">
-          🔌 <span className="ml-2">Don't worry if you're not sure about integrations — we can help you decide</span>
+          🔌 <span className="ml-2">{"Don't worry if you're not sure about integrations — we can help you decide"}</span>
         </div>
       </motion.div>
     </motion.div>

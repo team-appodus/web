@@ -69,7 +69,7 @@ export function MissionStep() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-3">
               <Label htmlFor="whatBuilding" className="text-lg font-semibold">
-                What you're building *
+                {"What you're building *"}
               </Label>
               <Textarea
                 id="whatBuilding"
@@ -86,7 +86,7 @@ export function MissionStep() {
 
             <div className="space-y-3">
               <Label htmlFor="whatNotBuilding" className="text-lg font-semibold">
-                What you're NOT building (optional but helpful)
+                {"What you're NOT building (optional but helpful)"}
               </Label>
               <Textarea
                 id="whatNotBuilding"
@@ -158,7 +158,7 @@ export function MissionStep() {
         className="mt-6 text-center"
       >
         <div className="inline-flex items-center px-4 py-2 bg-accent/10 border border-accent/20 rounded-full text-sm text-accent-foreground">
-          💡 <span className="ml-2">Great founders define what they DON'T want as clearly as what they do</span>
+          💡 <span className="ml-2">{"Great founders define what they DON'T want as clearly as what they do"}</span>
         </div>
       </motion.div>
     </motion.div>

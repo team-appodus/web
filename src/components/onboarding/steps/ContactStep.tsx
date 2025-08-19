@@ -43,7 +43,7 @@ export function ContactStep() {
             Founder Identity Confirmed
           </CardTitle>
           <p className="text-muted-foreground">
-            Let's start with the basics. Tell us who you are and what you're building.
+            {"Let's start with the basics. Tell us who you are and what you're building."}
           </p>
         </CardHeader>
         
