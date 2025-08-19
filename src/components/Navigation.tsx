@@ -1,31 +1,48 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@3rdparty/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, User, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
+import { ROUTES } from "@lib/routes";
+import { cn } from "@lib/utils";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "How It Works", path: "/how-it-works" },
-    { name: "Featured Work", path: "/featured-work" },
-    { name: "About", path: "/about" },
+    { name: "Home", path: ROUTES.HOME },
+    { name: "How It Works", path: ROUTES.HOW_IT_WORKS },
+    { name: "Featured Work", path: ROUTES.FEATURED_WORK },
+    { name: "About", path: ROUTES.ABOUT },
     // { name: "Contact", path: "/contact" },
   ];
 
   const isActive = (path: string) => pathname === path;
 
   return (
-    <nav className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
+    <nav className={cn(
+        "sticky top-0 z-50 transition-all duration-300",
+        isScrolled
+          ? "bg-background/95 backdrop-blur-sm border-b border-border"
+          : "bg-transparent"
+      )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href={ROUTES.HOME} className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">A</span>
             </div>
@@ -48,8 +65,15 @@ const Navigation = () => {
               </Link>
             ))}
             <Button variant="cta" size="sm" asChild>
-              <Link href="/start-your-build">Start Your Build</Link>
+              <Link href={ROUTES.START_YOUR_BUILD}>Start Your Build</Link>
             </Button>
+            <Link
+              href="/login?auth-type=login"
+              className={`flex items-center space-x-1 text-sm font-medium transition-colors hover:text-primary`}
+            >
+              <User className="h-4 w-4" />
+              <span>Login</span>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -84,10 +108,21 @@ const Navigation = () => {
               ))}
               <div className="px-3 py-2">
                 <Button variant="cta" size="sm" className="w-full" asChild>
-                  <Link href="/start-your-build">Start Your Build</Link>
+                  <Link href={ROUTES.START_YOUR_BUILD}>Start Your Build</Link>
                 </Button>
               </div>
-            </div>
+              <div className="px-3 py-2">
+                <Button variant="secondary" size="sm" className="w-full" asChild>
+                  <Link
+                    href="/login"
+                    className={`flex items-center space-x-2 px-3 py-2 text-base font-medium transition-colors hover:text-primary`}
+                  >
+                    <User className="h-5 w-5" />
+                    <span>Login</span>
+                  </Link>
+                </Button>
+              </div>
+              </div>
           </div>
         )}
       </div>

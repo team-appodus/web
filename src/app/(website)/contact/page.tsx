@@ -36,7 +36,7 @@ const Contact = () => {
     // Simulate form submission
     toast({
       title: "Message sent successfully!",
-      description: "We&lsquo;ll get back to you within 24 hours.",
+      description: "We'll get back to you within 24 hours.",
     });
 
     // Reset form
@@ -107,7 +107,7 @@ const Contact = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="mb-6">Tell us about your project</h1>
           <p className="text-xl text-muted-foreground mb-8">
-            Ready to build something amazing? Let&lsquo;s discuss your vision and create a roadmap for success.
+            {"Ready to build something amazing? Let's discuss your vision and create a roadmap for success."}
           </p>
         </div>
       </section>
@@ -333,9 +333,9 @@ const Contact = () => {
             </AccordionItem>
             
             <AccordionItem value="item-3">
-              <AccordionTrigger className="hover:cursor-pointer hover:no-underline">What&lsquo;s your pricing model?</AccordionTrigger>
+              <AccordionTrigger className="hover:cursor-pointer hover:no-underline">{"What's your pricing model?"}</AccordionTrigger>
               <AccordionContent>
-                We offer fixed-price projects based on scope and complexity. No hourly billing or surprise costs. You&lsquo;ll know exactly what you&lsquo;re paying upfront, which helps with budgeting and planning.
+                {"We offer fixed-price projects based on scope and complexity. No hourly billing or surprise costs. You'll know exactly what you're paying upfront, which helps with budgeting and planning."}              
               </AccordionContent>
             </AccordionItem>
             
@@ -356,7 +356,7 @@ const Contact = () => {
             <AccordionItem value="item-6">
               <AccordionTrigger className="hover:cursor-pointer hover:no-underline">Can you sign an NDA?</AccordionTrigger>
               <AccordionContent>
-                Yes, we&lsquo;re happy to sign NDAs and other confidentiality agreements. We understand that your ideas and business information are sensitive and treat them with the utmost care and discretion.
+                {"Yes, we're happy to sign NDAs and other confidentiality agreements. We understand that your ideas and business information are sensitive and treat them with the utmost care and discretion."}
               </AccordionContent>
             </AccordionItem>
           </Accordion>

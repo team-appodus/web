@@ -1,5 +1,6 @@
 import { Button } from "@3rdparty/ui/button";
 import { Card, CardContent } from "@3rdparty/ui/card";
+import { ROUTES } from "@lib/routes";
 import { 
   MessageSquare, 
   FileText, 
@@ -209,7 +210,7 @@ const HowItWorks = () => {
           <div className="text-center mb-16">
             <h2 className="mb-6">Typical Project Timeline</h2>
             <p className="text-xl text-muted-foreground">
-              From kick-off to launch, here&lsquo;s what you can expect
+              {"From kick-off to launch, here's what you can expect"}
             </p>
           </div>
 
@@ -293,10 +294,10 @@ const HowItWorks = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="mb-6 text-primary-foreground">Ready to get started?</h2>
           <p className="text-xl mb-8 text-primary-foreground/90">
-            Let&lsquo;s discuss your project and create a custom roadmap for success.
+            {"Let's discuss your project and create a custom roadmap for success."}
           </p>
           <Button variant="accent" size="xl" asChild>
-            <Link href="/contact">
+            <Link href={ROUTES.START_YOUR_BUILD}>
               Start Your Project
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>

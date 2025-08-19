@@ -1,3 +1,4 @@
+import { ROUTES } from "@lib/routes";
 import { Mail, Twitter, Linkedin, Github, MapPin} from "lucide-react";
 import Link from "next/link";
 
@@ -8,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div className="col-span-1 md:col-span-2">
-            <Link href="/" className="flex items-center space-x-2 mb-4">
+            <Link href={ROUTES.HOME} className="flex items-center space-x-2 mb-4">
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-lg">A</span>
               </div>
@@ -31,27 +32,27 @@ const Footer = () => {
             <h3 className="font-semibold text-foreground mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href={ROUTES.HOME} className="text-muted-foreground hover:text-primary transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/how-it-works" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href={ROUTES.HOW_IT_WORKS} className="text-muted-foreground hover:text-primary transition-colors">
                   How It Works
                 </Link>
               </li>
               <li>
-                <Link href="/featured-work" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href={ROUTES.FEATURED_WORK} className="text-muted-foreground hover:text-primary transition-colors">
                   Featured Work
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href={ROUTES.ABOUT} className="text-muted-foreground hover:text-primary transition-colors">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href={ROUTES.START_YOUR_BUILD} className="text-muted-foreground hover:text-primary transition-colors">
                   Contact
                 </Link>
               </li>

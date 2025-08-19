@@ -14,7 +14,7 @@ import { CreateProjectDto } from '@components/project/models';
 export function ConfirmationStep() {
   const { data, prevStep, resetData } = useOnboardingStore();
   const { toast } = useToast();
-    const projectService = new ProjectService(httpClient)
+  const projectService = new ProjectService(httpClient)
 
   const handleSubmit = async() => {
     // Here you would typically send the data to your backend
@@ -62,10 +62,10 @@ export function ConfirmationStep() {
           <Rocket className="w-12 h-12 text-primary-foreground" />
         </div>
         <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
-          You&lsquo;re Ready to Build! 🚀
+          {"You're Ready to Build! 🚀"}
         </h1>
         <p className="text-lg text-muted-foreground">
-          Thanks for completing your build profile. Here&lsquo;s what we captured:
+          {"Thanks for completing your build profile. Here's what we captured:"}
         </p>
       </motion.div>
 
@@ -114,12 +114,12 @@ export function ConfirmationStep() {
           </CardHeader>
           <CardContent className="space-y-3">
             <div>
-              <span className="font-medium text-sm">What you&lsquo;re building:</span>
+              <span className="font-medium text-sm">{"What you're building:"}</span>
               <p className="text-sm text-muted-foreground mt-1">{data.what_building}</p>
             </div>
             {data.what_not_building && (
               <div>
-                <span className="font-medium text-sm">What you&lsquo;re NOT building:</span>
+                <span className="font-medium text-sm">{"What you're NOT building:"}</span>
                 <p className="text-sm text-muted-foreground mt-1">{data.what_not_building}</p>
               </div>
             )}
@@ -207,7 +207,7 @@ export function ConfirmationStep() {
           <div className="text-center mb-6">
             <h3 className="text-xl font-semibold mb-2">What happens next?</h3>
             <p className="text-muted-foreground">
-              We&lsquo;ll review your requirements and create a custom proposal with timeline, tech stack recommendations, and pricing.
+              {"We'll review your requirements and create a custom proposal with timeline, tech stack recommendations, and pricing."}
             </p>
           </div>
 

@@ -91,7 +91,7 @@ export function StackStep() {
             Stack Expanded
           </CardTitle>
           <p className="text-muted-foreground">
-            Let&lsquo;s configure the integrations and technical stack that will power your product.
+            {"Let's configure the integrations and technical stack that will power your product."}
           </p>
         </CardHeader>
         
@@ -127,6 +127,7 @@ export function StackStep() {
               <div className="flex items-center space-x-3 mt-3">
                 <Label htmlFor="escrow" className="text-sm font-medium">Escrow Support</Label>
                 <Switch
+                className='data-[state=checked]:bg-accent'
                   id="escrow"
                   checked={data.escrow_support}
                   onCheckedChange={(checked) => updateData({ escrow_support: checked })}
@@ -365,7 +366,7 @@ export function StackStep() {
         className="mt-6 text-center"
       >
         <div className="inline-flex items-center px-4 py-2 bg-accent/10 border border-accent/20 rounded-full text-sm text-accent-foreground">
-          🔌 <span className="ml-2">Don&lsquo;t worry if you&lsquo;re not sure about integrations — we can help you decide</span>
+          🔌 <span className="ml-2">{"Don't worry if you're not sure about integrations — we can help you decide"}</span>
         </div>
       </motion.div>
     </motion.div>

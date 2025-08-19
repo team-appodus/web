@@ -4,6 +4,7 @@ import { Badge } from "@3rdparty/ui/badge";
 import { ArrowRight, TrendingUp, Users, Zap } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { ROUTES } from "@lib/routes";
 
 const Work = () => {
   const projects = [
@@ -121,7 +122,7 @@ const Work = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="mb-6">Our Work</h1>
           <p className="text-xl text-muted-foreground mb-8">
-            Real products, real results. See how we&lsquo;ve helped startups build and scale their ideas into successful businesses.
+            {"Real products, real results. See how we've helped startups build and scale their ideas into successful businesses."}
           </p>
         </div>
       </section>
@@ -150,7 +151,7 @@ const Work = () => {
           <div className="text-center mb-16">
             <h2 className="mb-6">Case Studies</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Detailed look at how we&lsquo;ve helped startups overcome challenges and achieve their goals
+              {"Detailed look at how we've helped startups overcome challenges and achieve their goals"}
             </p>
           </div>
 
@@ -252,17 +253,17 @@ const Work = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="mb-6 text-primary-foreground">Ready to build something amazing?</h2>
           <p className="text-xl mb-8 text-primary-foreground/90">
-            Let&lsquo;s discuss your project and create something that your users will love.
+            {"Let's discuss your project and create something that your users will love."}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="accent" size="xl" asChild>
-              <Link href="/contact">
+              <Link href={ROUTES.START_YOUR_BUILD}>
                 Start Your Project
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button variant="outline" size="xl" className="bg-primary text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
-              <Link href="/how-it-works">See Our Process</Link>
+              <Link href={ROUTES.HOW_IT_WORKS}>See Our Process</Link>
             </Button>
           </div>
         </div>
